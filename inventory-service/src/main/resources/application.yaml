@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: inventory-service
+
+  datasource:
+    url: jdbc:h2:mem:inventory-db
+
+  cloud:
+    discovery:
+      enabled: false
+
+    config:
+      enabled: false
+
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh
