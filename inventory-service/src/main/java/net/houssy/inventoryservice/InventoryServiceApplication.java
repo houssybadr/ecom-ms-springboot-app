@@ -1,7 +1,7 @@
 package net.houssy.inventoryservice;
 
-import net.houssy.inventoryservice.entities.Inventory;
-import net.houssy.inventoryservice.repository.InventoryRepo;
+import net.houssy.inventoryservice.entities.Product;
+import net.houssy.inventoryservice.repository.ProductRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,21 +15,21 @@ public class InventoryServiceApplication {
     }
 
     @Bean
-    CommandLineRunner start(InventoryRepo inventoryRepo) {
+    CommandLineRunner start(ProductRepo inventoryRepo) {
         return args->{
-            inventoryRepo.save(Inventory.builder()
+            inventoryRepo.save(Product.builder()
                             .name("stylo")
                             .price(1)
                             .quantity(3000)
                             .build());
 
-            inventoryRepo.save(Inventory.builder()
+            inventoryRepo.save(Product.builder()
                     .name("cahier")
                     .price(10)
                     .quantity(2500)
                     .build());
 
-            inventoryRepo.save(Inventory.builder()
+            inventoryRepo.save(Product.builder()
                     .name("tablet")
                     .price(1799)
                     .quantity(900)

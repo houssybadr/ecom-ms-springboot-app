@@ -11,12 +11,13 @@ spring:
 
   cloud:
     discovery:
-      enabled: false
+      enabled: true
 
     config:
       enabled: false
 
+
+
 server:
   port: 8081
-
 

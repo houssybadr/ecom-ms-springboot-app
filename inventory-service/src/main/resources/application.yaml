@@ -7,7 +7,7 @@ spring:
 
   cloud:
     discovery:
-      enabled: false
+      enabled: true
 
     config:
       enabled: false
@@ -15,6 +15,7 @@ spring:
   h2:
     console:
       enabled: true
+
 
 server:
   port: 8082
