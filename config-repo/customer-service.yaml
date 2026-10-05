@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:customer-db
+
+  h2:
+    console:
+      enabled: true
+
+  cloud:
+    discovery:
+      enabled: true
+
+eureka:
+  client:
+    refresh:
+      enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh
+
+customer:
+  params:
+    x: 3

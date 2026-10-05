@@ -1,4 +1,7 @@
 package net.houssy.customerservice.exception.exceptions;
 
-public class DuplicateRessourceException {
+public class DuplicateResourceException extends RuntimeException{
+    public DuplicateResourceException(String message) {
+        super(message);
+    }
 }

@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+//@RepositoryRestResource
 public interface BillRepo extends JpaRepository<Bill,Long> {
     List<ProductItem> findByCustomerId(Long customerId);
 }

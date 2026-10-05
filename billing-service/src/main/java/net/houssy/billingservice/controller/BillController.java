@@ -1,6 +1,7 @@
 package net.houssy.billingservice.controller;
 
 
+import net.houssy.billingservice.dto.BillDto;
 import net.houssy.billingservice.entities.Bill;
 import net.houssy.billingservice.feign.CustomerServiceRestClient;
 import net.houssy.billingservice.feign.InventoryServiceRestClient;
@@ -8,41 +9,25 @@ import net.houssy.billingservice.model.Customer;
 import net.houssy.billingservice.model.Product;
 import net.houssy.billingservice.repository.BillRepo;
 import net.houssy.billingservice.repository.ProductItemRepo;
+import net.houssy.billingservice.services.BillService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/bills")
+@RequestMapping(path = "/bills")
 public class BillController {
 
-    private BillRepo billRepo;
-    private ProductItemRepo productItemRepo;
-    private CustomerServiceRestClient customerClient;
-    private InventoryServiceRestClient inventoryClient;
-
-    public BillController(
-            BillRepo billRepo,
-            ProductItemRepo productItemRepo,
-            CustomerServiceRestClient customerClient,
-            InventoryServiceRestClient inventoryClient
-    ){
-        this.billRepo = billRepo;
-        this.productItemRepo = productItemRepo;
-        this.customerClient = customerClient;
-        this.inventoryClient = inventoryClient;
+    private BillService billService;
+    public BillController( BillService billService) {
+        this.billService = billService;
     }
 
     @GetMapping(path = "/{id}")
-    public Bill getBills(@PathVariable Long id){
-        Bill bill=this.billRepo.findById(id)
-                .orElseThrow(()->new RuntimeException("Bill introuvable avec id "+id));
-        Customer customer=customerClient.getCustomerById(bill.getCustomerId());
-        bill.setCustomer(customer);
-        bill.getProductItems().forEach(productItem->{
-            productItem.setProduct(inventoryClient.getProductById(productItem.getProductId()));
-        });
-        return bill;
+    public ResponseEntity<BillDto> getBills(@PathVariable Long id){
+        return new ResponseEntity<>(this.billService.findById(id), HttpStatus.OK);
     }
 }

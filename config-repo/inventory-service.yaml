@@ -1,0 +1,23 @@
+spring:
+
+  datasource:
+    url: jdbc:h2:mem:inventory-db
+
+  cloud:
+    discovery:
+      enabled: true
+
+  h2:
+    console:
+      enabled: true
+
+eureka:
+  client:
+    refresh:
+      enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: billing-service
+
+  config:
+    import: optional:configserver:http://localhost:9999
+
+  cloud:
+    config:
+      enabled: true
+      
+server:
+  port: 8083
+

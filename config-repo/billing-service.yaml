@@ -1,0 +1,26 @@
+spring:
+
+  datasource:
+    url: jdbc:h2:mem:billing-db
+
+  cloud:
+    discovery:
+      enabled: true
+
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+  h2:
+    console:
+      enabled: true
+eureka:
+  client:
+    refresh:
+      enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh
