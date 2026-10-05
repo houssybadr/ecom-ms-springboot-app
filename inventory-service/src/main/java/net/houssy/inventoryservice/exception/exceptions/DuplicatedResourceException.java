@@ -1,0 +1,4 @@
+package net.houssy.inventoryservice.exception.exceptions;
+
+public class DuplicatedResourceException {
+}
